@@ -60,12 +60,5 @@ def default_query_factory(self, search, query_parser=None):
     for key, value in sortkwargs.items():
         urlkwargs.add(key, value)
 
-    if self.record_filter is not None:
-        if callable(self.record_filter):
-            record_filter = self.record_filter()
-        else:
-            record_filter = IQ(self.record_filter)
-        search = search.filter(record_filter)
-
     urlkwargs.add('q', query_string)
     return search, urlkwargs
